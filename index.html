@@ -184,6 +184,7 @@
       font-weight:800;
       cursor:pointer;
       transition:.18s ease;
+      text-decoration:none;
     }
 
     .btn-primary{
@@ -640,9 +641,7 @@
     <div class="container nav-inner">
       <a class="brand" href="/">
         <div class="brand-mark">P8</div>
-        <div>
-          <div>Prorai8</div>
-        </div>
+        <div>Prorai8</div>
       </a>
 
       <div class="nav-links">
@@ -650,7 +649,7 @@
         <a href="/rentals.html">Rentals</a>
         <a href="/roi.html">ROI Calculator</a>
         <a href="/legal/">Legal</a>
-        <a class="nav-cta" href="/roi.html">Analyze ROI</a>
+        <a class="nav-cta" href="#market">Analyze ROI</a>
       </div>
     </div>
   </nav>
@@ -810,8 +809,8 @@
           AI property intelligence for smarter decisions.
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a class="mini-btn" href="/rentals.html">View Rentals</a>
-          <a class="mini-btn primary" href="/roi.html">Analyze ROI</a>
+          <a class="mini-btn" href="/rentals.html" style="display:inline-flex;align-items:center;text-decoration:none;">View Rentals</a>
+          <a class="mini-btn primary" href="/roi.html" style="display:inline-flex;align-items:center;text-decoration:none;">Open ROI Calculator</a>
         </div>
       </div>
     </div>
@@ -972,8 +971,8 @@
             </div>
 
             <div class="property-actions">
-              <a class="mini-btn primary" href="/roi.html">Analyze ROI</a>
-              <a class="mini-btn" href="/rentals.html">View Rentals</a>
+              <button class="mini-btn primary" type="button" onclick="openPropertyROI(${p.id})">Analyze ROI</button>
+              <button class="mini-btn" type="button" onclick="showPropertyDetails(${p.id})">View Details</button>
               <button class="mini-btn" type="button" onclick="highlightProperty(${p.id})">Highlight on Map</button>
             </div>
           </div>
@@ -989,15 +988,52 @@
 
     function runSearch(){
       activeId = null;
-      renderAll(filterProperties(searchInput.value));
+      const filtered = filterProperties(searchInput.value);
+      renderAll(filtered);
+
+      const market = document.getElementById("market");
+      if (market) {
+        market.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
 
     function highlightProperty(id){
       activeId = id;
       renderAll(filterProperties(searchInput.value));
+      const card = document.getElementById("property-" + id);
+      if(card) card.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function openPropertyROI(id){
+      const property = properties.find(p => p.id === id);
+      if(!property) return;
+
+      alert(
+        "ROI analysis for " + property.address + "\n\n" +
+        "Estimated Rent: " + money(property.rent) + "/mo\n" +
+        "Projected ROI: " + property.roi + "%\n" +
+        "Strategy: " + property.strategy + "\n\n" +
+        "Next step: connect this button to your live /roi.html calculator page."
+      );
+    }
+
+    function showPropertyDetails(id){
+      const property = properties.find(p => p.id === id);
+      if(!property) return;
+
+      alert(
+        "Property Details\n\n" +
+        property.address + "\n" +
+        property.city + " • " + property.zip + "\n\n" +
+        "Estimated Rent: " + money(property.rent) + "/mo\n" +
+        "Projected ROI: " + property.roi + "%\n" +
+        "Strategy: " + property.strategy
+      );
     }
 
     window.highlightProperty = highlightProperty;
+    window.openPropertyROI = openPropertyROI;
+    window.showPropertyDetails = showPropertyDetails;
 
     searchBtn.addEventListener("click", runSearch);
 
