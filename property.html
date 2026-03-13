@@ -6,20 +6,44 @@
 </head>
 <body>
 
-  <h1>Property Details</h1>
+  <div class="page">
+    <a href="search.html" class="back-link">← Back to Search</a>
 
-  <div id="property"></div>
+    <div class="property-layout">
+      <div class="listing-card">
+        <img id="propertyImage" class="listing-image" src="" alt="Property image">
+        <div id="property" class="listing-content"></div>
+      </div>
 
-  <h2>ROI Calculator</h2>
+      <div class="analyzer-card">
+        <h2>Deal Analyzer</h2>
 
-  <input id="purchase" placeholder="Purchase price">
-  <input id="rent" placeholder="Monthly rent">
-  <input id="expenses" placeholder="Monthly expenses">
+        <div class="calculator-grid">
+          <div class="field-group">
+            <label for="purchase">Purchase Price ($)</label>
+            <input id="purchase" type="number" placeholder="385000">
+          </div>
 
-  <button onclick="calc()">Calculate</button>
+          <div class="field-group">
+            <label for="rent">Monthly Rent Estimate ($)</label>
+            <input id="rent" type="number" placeholder="2310">
+          </div>
 
-  <h3 id="mortgageResult">Monthly Mortgage: $0</h3>
-  <h3 id="result">Monthly Cashflow: $0 | ROI: 0%</h3>
+          <div class="field-group">
+            <label for="expenses">Monthly Expenses Estimate ($)</label>
+            <input id="expenses" type="number" placeholder="508">
+          </div>
+        </div>
+
+        <button class="primary-btn" onclick="calc()">Analyze Deal</button>
+
+        <div class="results-box">
+          <p id="mortgageResult"><strong>Monthly Mortgage:</strong> $0.00</p>
+          <p id="result"><strong>Monthly Cashflow:</strong> $0.00 | <strong>ROI:</strong> 0.00%</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="js/calculator.js"></script>
   <script src="js/property.js"></script>
