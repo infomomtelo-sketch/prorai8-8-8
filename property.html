@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Property</title>
-<link rel="stylesheet" href="css/style.css">
+  <title>Property Details</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-<h1>Property Details</h1>
+  <h1>Property Details</h1>
 
-<div id="property"></div>
+  <div id="property"></div>
 
-<h2>ROI Calculator</h2>
+  <h2>ROI Calculator</h2>
 
-<input id="price" placeholder="Purchase price">
-<input id="rent" placeholder="Monthly rent">
-<input id="expenses" placeholder="Monthly expenses">
+  <input id="purchase" placeholder="Purchase price">
+  <input id="rent" placeholder="Monthly rent">
+  <input id="expenses" placeholder="Monthly expenses">
 
-<button onclick="calc()">Calculate</button>
+  <button onclick="calc()">Calculate</button>
 
-<h3 id="result"></h3>
+  <h3 id="mortgageResult">Monthly Mortgage: $0</h3>
+  <h3 id="result">Monthly Cashflow: $0 | ROI: 0%</h3>
 
-<script src="js/property.js"></script>
-<script src="js/calculator.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/property.js"></script>
 
 </body>
 </html>
