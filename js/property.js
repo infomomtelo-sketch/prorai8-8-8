@@ -7,7 +7,8 @@ const properties = [
     beds: 3,
     baths: 2,
     sqft: 1650,
-    year: 1998
+    year: 1998,
+    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80"
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ const properties = [
     beds: 3,
     baths: 2,
     sqft: 1720,
-    year: 2001
+    year: 2001,
+    image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=80"
   }
 ];
 
@@ -27,12 +29,14 @@ const id = Number(params.get("id"));
 const property = properties.find(p => p.id === id);
 
 if (property) {
+  document.getElementById("propertyImage").src = property.image;
+
   document.getElementById("property").innerHTML = `
-    <h3>${property.address}</h3>
-    <p>${property.city}</p>
-    <p>Price: $${property.price.toLocaleString()}</p>
-    <p>${property.beds} bed • ${property.baths} bath • ${property.sqft} sqft</p>
-    <p>Built ${property.year}</p>
+    <h2>${property.address}</h2>
+    <p class="muted">${property.city}</p>
+    <p class="price">$${property.price.toLocaleString()}</p>
+    <p>${property.beds} bed • ${property.baths} bath • ${property.sqft.toLocaleString()} sqft</p>
+    <p class="muted">Built ${property.year}</p>
   `;
 
   document.getElementById("purchase").value = property.price;
